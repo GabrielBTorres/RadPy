@@ -1,50 +1,82 @@
+import sqlite3
+
+def criar_tabela_alunos():
+    conexao = sqlite3.connect('alunos.db')
+    cursor = conexao.cursor()
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS alunos (
+            id INTEGER PRIMARY KEY,
+            nome TEXT NOT NULL,
+            email TEXT NOT NULL,
+            curso TEXT NOT NULL
+        )
+    ''')
+
+    conexao.commit()
+    conexao.close()
+
+
 def cadastrar_aluno():
     nome = input("Digite o nome do aluno: ")
     email = input("Digite o email do aluno: ")
     curso = input("Digite o curso do aluno: ")
 
-    aluno_info = f"Nome: {nome}\nEmail: {email}\nCurso: {curso}\n"
+    conexao = sqlite3.connect('alunos.db')
+    cursor = conexao.cursor()
 
-    with open('alunos.txt', 'a') as arquivo:
-        arquivo.write(aluno_info)
-        arquivo.write('-' * 30 + '\n')
+    cursor.execute('INSERT INTO alunos (nome, email, curso) VALUES (?, ?, ?)', (nome, email, curso))
+
+    conexao.commit()
+    conexao.close()
 
     print("Aluno cadastrado com sucesso.")
 
 def listar_alunos():
-    arquivo = open('alunos.txt', 'r')
-    conteudo = arquivo.read()
-    arquivo.close()
-    
-    if conteudo.strip():  # verificador de arquivo vazio
+    conexao = sqlite3.connect('alunos.db')
+    cursor = conexao.cursor()
+
+    cursor.execute('SELECT * FROM alunos')
+    alunos = cursor.fetchall()
+
+    conexao.close()
+
+    if alunos:
         print("Lista de alunos cadastrados:")
-        print("-" * 30)
-        print(conteudo)
-        print("-" * 30)
+        for aluno in alunos:
+            print(f"ID: {aluno[0]}")
+            print(f"Nome: {aluno[1]}")
+            print(f"Email: {aluno[2]}")
+            print(f"Curso: {aluno[3]}")
+            print("-" * 30)
     else:
         print("Nenhum aluno cadastrado ainda.")
 
+
 def buscar_aluno_por_nome():
     nome_busca = input("Digite o nome do aluno que deseja buscar: ")
-    encontrado = False
-    
-    arquivo = open('alunos.txt', 'r')
-    
-    for linha in arquivo:
-        if nome_busca in linha:
-            print("Aluno encontrado:")
-            print("-" * 30)
-            print(linha.strip())
-            print("-" * 30)
-            encontrado = True
-    
-    arquivo.close()
 
-    if not encontrado:
+    conexao = sqlite3.connect('alunos.db')
+    cursor = conexao.cursor()
+
+    cursor.execute('SELECT * FROM alunos WHERE nome LIKE ?', (f'%{nome_busca}%',))
+    alunos = cursor.fetchall()
+
+    conexao.close()
+
+    if alunos:
+        print("Alunos encontrados:")
+        for aluno in alunos:
+            print(f"ID: {aluno[0]}")
+            print(f"Nome: {aluno[1]}")
+            print(f"Email: {aluno[2]}")
+            print(f"Curso: {aluno[3]}")
+            print("-" * 30)
+    else:
         print(f"Nenhum aluno com o nome '{nome_busca}' encontrado.")
 
-
 def menu():
+    criar_tabela_alunos()
     while True:
         print("\nMenu:")
         print("1. Cadastrar um novo aluno")
