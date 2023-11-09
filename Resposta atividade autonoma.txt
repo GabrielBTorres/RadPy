@@ -1,0 +1,25 @@
+Questão 1 : letra "E"
+Não é necessário uma equipe especializada para utilizar o método RAD.
+
+
+Questão 2: letra "A"
+A escolha do framework deve ser de acordo com a necessidade do projeto,cada projeto pode ter requisitos diferentes portanto pode ser usado o framework
+que melhor atende a necessidade.
+
+Atividade autonoma aura aula 09:
+QUESTÃO 1: RESPOSTA "D"
+O Tkinter é o kit de ferramentas de interface gráfica padrão (GUI) para o Python
+QUESTÃO 2: RESPOSTA "C"
+O padrão para instalar frameworks python é uitilizando o 'PIP'
+
+Atividade autonoma aura aula 10:
+QUESTÃO 1: RESPOSTA "A"
+O widget "Botão" no Tkinter é frequentemente utilizado para criar botões que os usuários podem clicar para realizar ações
+QUESTÃO 2: RESPOSTA "B"
+substituir "lacuna1" por "tkinter" e "lacuna2" por "mainloop".
+
+Atividade autonoma aura aula 11:
+QUESTÃO 1: RESPOSTA "E"
+a função connect é para estabelecer uma conexão com o PostgreSQL, especificando os parâmetros
+QUESTÃO 2: RESPOSTA "B" 
+O programa estabelece uma conexão com o banco de dados PostgreSQL, cria um cursor, executa uma consulta SQL que seleciona os registros da tabela 
