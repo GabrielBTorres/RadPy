@@ -1,7 +1,0 @@
-Questão 1 : letra "E"
-Não é necessário uma equipe especializada para utilizar o método RAD.
-
-
-Questão 2: letra "A"
-A escolha do framework deve ser de acordo com a necessidade do projeto,cada projeto pode ter requisitos diferentes portanto pode ser usado o framework
-que melhor atende a necessidade.
